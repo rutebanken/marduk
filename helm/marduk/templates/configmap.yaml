@@ -15,12 +15,13 @@ data:
     server.compression.enabled=true
 
     # Camel
-    camel.springboot.name=Marduk
-    camel.springboot.streamCachingEnabled=false
-    camel.springboot.streamCachingSpoolEnabled=true
+    camel.main.name=Marduk
+    camel.main.stream-caching-enabled=false
+    camel.main.stream-caching-spool-enabled=true
     camel.dataformat.jackson.module-refs=jacksonJavaTimeModule
     camel.servlet.mapping.context-path=/services/*
     camel.cluster.kubernetes.enabled=true
+    camel.cluster.file.enabled=false
     camel.cluster.kubernetes.cluster-labels[app]=marduk
     camel.cluster.kubernetes.config-map-name=marduk-leaders
     camel.component.http.follow-redirects=true
