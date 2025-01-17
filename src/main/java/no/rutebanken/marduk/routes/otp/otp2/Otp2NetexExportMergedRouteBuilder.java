@@ -128,7 +128,8 @@ public class Otp2NetexExportMergedRouteBuilder extends BaseRouteBuilder {
                 .stop()
                 .routeId("otp2-netex-export-fetch-latest-for-stops");
 
-        from("direct:otp2MergeNetex").streamCaching()
+        from("direct:otp2MergeNetex")
+                .streamCache("true")
                 .log(LoggingLevel.DEBUG, getClass().getName(), correlation() + "Merging Netex files for all providers and stop place registry.")
                 .process(e -> new File( e.getProperty(FOLDER_NAME, String.class) + MERGED_NETEX_SUBFOLDER).mkdir())
                 .process(e -> e.getIn().setBody(ZipFileUtils.zipFilesInFolder( e.getProperty(FOLDER_NAME, String.class) + UNPACKED_NETEX_SUBFOLDER,  e.getProperty(FOLDER_NAME, String.class) + MERGED_NETEX_SUBFOLDER + "/merged.zip")))

@@ -48,7 +48,8 @@ public class InboundQueueRouteBuilder extends BaseRouteBuilder {
                 .to("google-pubsub:{{marduk.pubsub.project.id}}:MardukDeadLetterQueue");
 
 
-        from("google-pubsub:{{marduk.pubsub.project.id}}:MardukInboundQueue").streamCaching()
+        from("google-pubsub:{{marduk.pubsub.project.id}}:MardukInboundQueue")
+                .streamCache("true")
                 .setHeader(Exchange.FILE_NAME, header(Constants.FILE_NAME))
                 .log(LoggingLevel.INFO, correlation() + "Received notification about file '${header." + Constants.FILE_NAME + "}' on inbound queue. Fetching file ...")
                 .log(LoggingLevel.INFO, correlation() + "Fetching blob ${header." + FILE_HANDLE + "}")
