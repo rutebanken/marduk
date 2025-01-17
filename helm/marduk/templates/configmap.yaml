@@ -28,6 +28,7 @@ data:
     camel.metrics.enable-route-event-notifier=false
     camel.metrics.enable-route-policy=false
     camel.metrics.enable-exchange-event-notifier=false
+    camel.rest.inline-routes = false
 
     # PubSub
     # project id and credential location are not set, they are retrieved automatically through the GOOGLE_APPLICATION_CREDENTIALS environment variable
