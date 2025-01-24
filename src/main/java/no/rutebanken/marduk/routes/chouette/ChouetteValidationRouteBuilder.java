@@ -96,7 +96,8 @@ public class ChouetteValidationRouteBuilder extends AbstractChouetteRouteBuilder
                 .routeId("chouette-validate-level2-all-providers");
 
 
-        from("google-pubsub:{{marduk.pubsub.project.id}}:ChouetteValidationQueue").streamCaching()
+        from("google-pubsub:{{marduk.pubsub.project.id}}:ChouetteValidationQueue")
+                .streamCache("true")
                 .process(this::setCorrelationIdIfMissing)
                 .removeHeader(Constants.CHOUETTE_JOB_ID)
                 .log(LoggingLevel.INFO, correlation() + "Starting Chouette validation")

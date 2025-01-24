@@ -25,7 +25,7 @@
     <properties>
         <java.version>21</java.version>
         <entur.google.pubsub.emulator.download.skip>false</entur.google.pubsub.emulator.download.skip>
-        <camel.version>4.4.4</camel.version>
+        <camel.version>4.8.3</camel.version>
         <entur.helpers.version>4.8</entur.helpers.version>
         <commons-io.version>2.18.0</commons-io.version>
         <commons-csv.version>1.13.0</commons-csv.version>
@@ -166,11 +166,19 @@
         </dependency>
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
-            <artifactId>camel-kubernetes-starter</artifactId>
+            <artifactId>camel-kubernetes-cluster-service-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
             <artifactId>camel-file-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-file-cluster-service-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-jaxb-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>

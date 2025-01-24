@@ -41,6 +41,7 @@ class AntuNetexValidationStatusRouteBuilderTest extends MardukRouteBuilderIntegr
     @EndpointInject("mock:publishMergedNetexQueue")
     protected MockEndpoint publishMergedNetexQueueMock;
 
+    @Override
     @BeforeEach
     protected void setUp() throws IOException {
         super.setUp();

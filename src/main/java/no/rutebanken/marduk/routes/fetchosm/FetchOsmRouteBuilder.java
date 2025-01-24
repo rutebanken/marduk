@@ -84,7 +84,7 @@ public class FetchOsmRouteBuilder extends BaseRouteBuilder {
                 .to("direct:uploadBlob")
                 // Fetch the actual file
                 .setHeader(Exchange.HTTP_METHOD, constant(org.apache.camel.component.http.HttpMethods.GET))
-                .streamCaching()
+                .streamCache("true")
                 .to(osmMapUrl)
                 .log(LoggingLevel.DEBUG, correlation() + "OSM map downloaded. Checking MD5")
                 .convertBodyTo(InputStream.class)
