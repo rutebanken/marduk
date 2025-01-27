@@ -153,7 +153,7 @@ public class FileClassificationRouteBuilder extends BaseRouteBuilder {
                 .otherwise()
                 .to("direct:antuNetexPreValidation")
                 // launch the import process if this is a GTFS file or if the pre-validation is activated in chouette
-                .filter(PredicateBuilder.or(simple("{{chouette.enablePreValidation:true}}"), header(FILE_TYPE).isEqualTo(FileType.GTFS)))
+                .filter(PredicateBuilder.or(simple("{{chouette.enablePreValidation:false}}"), header(FILE_TYPE).isEqualTo(FileType.GTFS)))
                 .log(LoggingLevel.INFO, correlation() + "Posting " + FILE_HANDLE + " ${header." + FILE_HANDLE + "} and " + FILE_TYPE + " ${header." + FILE_TYPE + "} on chouette import queue.")
                 .to("google-pubsub:{{marduk.pubsub.project.id}}:ChouetteImportQueue")
                 .routeId("process-valid-file");

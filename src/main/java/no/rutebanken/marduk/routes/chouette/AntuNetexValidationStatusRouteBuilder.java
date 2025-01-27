@@ -104,14 +104,14 @@ public class AntuNetexValidationStatusRouteBuilder extends AbstractChouetteRoute
 
                 .when(header(VALIDATION_STAGE_HEADER).isEqualTo(VALIDATION_STAGE_PREVALIDATION))
                 .process(e -> JobEvent.providerJobBuilder(e).timetableAction(JobEvent.TimetableAction.PREVALIDATION).state(JobEvent.State.OK).build())
-                .filter(PredicateBuilder.not(simple("{{chouette.enablePreValidation:true}}")))
+                .filter(PredicateBuilder.not(simple("{{chouette.enablePreValidation:false}}")))
                 .log(LoggingLevel.INFO, correlation() + "Posting " + FILE_HANDLE + " ${header." + FILE_HANDLE + "} and " + FILE_TYPE + " ${header." + FILE_TYPE + "} on chouette import queue.")
                 .to("google-pubsub:{{marduk.pubsub.project.id}}:ChouetteImportQueue")
                 .endChoice()
 
                 .when(header(VALIDATION_STAGE_HEADER).isEqualTo(VALIDATION_STAGE_EXPORT_NETEX_POSTVALIDATION))
                 .process(e -> JobEvent.providerJobBuilder(e).timetableAction(JobEvent.TimetableAction.EXPORT_NETEX_POSTVALIDATION).state(JobEvent.State.OK).build())
-                .filter(PredicateBuilder.not(simple("{{chouette.enablePostValidation:true}}")))
+                .filter(PredicateBuilder.not(simple("{{chouette.enablePostValidation:false}}")))
                 .setHeader(TARGET_FILE_HANDLE, simple(BLOBSTORE_PATH_NETEX_EXPORT + "${header." + CHOUETTE_REFERENTIAL + "}-" + Constants.CURRENT_AGGREGATED_NETEX_FILENAME))
                 .to("direct:copyInternalBlobInBucket")
                 .to("google-pubsub:{{marduk.pubsub.project.id}}:ChouetteMergeWithFlexibleLinesQueue")
@@ -120,7 +120,7 @@ public class AntuNetexValidationStatusRouteBuilder extends AbstractChouetteRoute
 
                 .when(header(VALIDATION_STAGE_HEADER).isEqualTo(VALIDATION_STAGE_EXPORT_NETEX_BLOCKS_POSTVALIDATION))
                 .process(e -> JobEvent.providerJobBuilder(e).timetableAction(JobEvent.TimetableAction.EXPORT_NETEX_BLOCKS_POSTVALIDATION).state(JobEvent.State.OK).build())
-                .filter(PredicateBuilder.not(simple("{{chouette.enablePostValidation:true}}")))
+                .filter(PredicateBuilder.not(simple("{{chouette.enablePostValidation:false}}")))
                 .setHeader(TARGET_FILE_HANDLE, simple(Constants.BLOBSTORE_PATH_NETEX_BLOCKS_EXPORT + "${header." + CHOUETTE_REFERENTIAL + "}-" + Constants.CURRENT_AGGREGATED_NETEX_FILENAME))
                 .to("direct:copyInternalBlobInBucket")
                 .endChoice()

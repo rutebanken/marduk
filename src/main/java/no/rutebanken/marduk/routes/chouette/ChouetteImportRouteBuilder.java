@@ -56,7 +56,7 @@ public class ChouetteImportRouteBuilder extends AbstractChouetteRouteBuilder {
     private final List<String> allowedCodespacesForStopUpdate;
 
     public ChouetteImportRouteBuilder(@Value("${chouette.url}") String chouetteUrl,
-                                      @Value("${chouette.enablePreValidation:true}") boolean enablePreValidation,
+                                      @Value("${chouette.enablePreValidation:false}") boolean enablePreValidation,
                                       @Value("${chouette.include.stops.codespaces:}") List<String> allowedCodespacesForStopUpdate,
                                       @Value("${blobstore.gcs.nisaba.exchange.container.name}") String nisabaExchangeContainerName) {
         this.chouetteUrl = chouetteUrl;

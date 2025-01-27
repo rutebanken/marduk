@@ -57,7 +57,7 @@ public class ChouetteExportNetexRouteBuilder extends AbstractChouetteRouteBuilde
 
     public ChouetteExportNetexRouteBuilder(
             @Value("${chouette.url}") String chouetteUrl,
-            @Value("${chouette.enablePostValidation:true}") boolean enablePostValidation,
+            @Value("${chouette.enablePostValidation:false}") boolean enablePostValidation,
             @Value("${chouette.include.stops.codespaces:}") List<String> allowedCodespacesForStopExport) {
         this.chouetteUrl = chouetteUrl;
         this.enablePostValidation = enablePostValidation;
